@@ -65,3 +65,6 @@ app.get("/auth/google/callback", passport.authenticate("google", { failureRedire
   // Successful authentication, redirect success.
   res.redirect("/success");
 });
+
+app.use(express.static("public"));
+app.use(express.static(__dirname + "/public"));
