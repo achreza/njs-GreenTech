@@ -4,6 +4,8 @@ const passport = require("passport");
 
 app.use(passport.initialize());
 app.use(passport.session());
+const sesi = require("../middleware/sesi_user");
+app.use(sesi);
 
 var multer = require("multer");
 

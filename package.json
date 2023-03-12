@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "admin-lte": "3.2",
+    "alert": "^5.1.4",
     "body-parser": "^1.17.2",
     "cookie-parser": "^1.4.6",
     "datatables.net-dt": "^1.13.4",

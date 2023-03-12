@@ -109,7 +109,8 @@ app.post("/register", function (req, res) {
         } else {
           req.flash("success", "Data added successfully!");
           //redirect ke dashboard user
-          res.render("auth/", { layout: "layouts/layout", title: "GreenTech", page: "auth" });
+
+          res.redirect("/auth/success");
         }
       }
     );

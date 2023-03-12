@@ -5,6 +5,8 @@ const passport = require("passport");
 
 app.use(passport.initialize());
 app.use(passport.session());
+const sesi = require("../middleware/sesi_admin");
+app.use(sesi);
 app.use("/", function (req, res, next) {
   console.log(req.session.user);
   if (typeof req.session.user === "undefined") {

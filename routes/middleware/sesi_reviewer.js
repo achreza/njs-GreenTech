@@ -5,16 +5,22 @@ const passport = require("passport");
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+let alert = require("alert");
+
 app.use("/", function (req, res, next) {
-  console.log(req.session.user);
+  console.log(req.url);
   if (typeof req.session.user === "undefined") {
-    res.end("Belum Login");
-  }else{
-    if (req.session.user.id_role_user == ) {
-      
+    alert("Anda Belum Login");
+    res.redirect("/auth");
+  } else {
+    if (req.session.user.id_role_user == 4) {
+      next();
+    } else {
+      alert("Anda Bukan Reviewer");
+      res.end("Illegal Access Detected");
     }
   }
-  next();
 });
 
 module.exports = app;
