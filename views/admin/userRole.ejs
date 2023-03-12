@@ -18,14 +18,33 @@
             <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Add
                 Role</button>
             <div class="col-lg-12">
-                <table id="example">
+                <table id="example" class="display table table-bordered">
                     <thead>
                         <tr>
+                            <th>No</th>
                             <th>ID Topic</th>
                             <th>Nama Topic</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <% if(data.length){ var no=0; for(var i=0;i<data.length;i++){ no++ %>
+                            <tr>
+                                <td>
+                                    <%= no %>
+                                </td>
+                                <td>
+                                    <%= data[i].id_role_user %>
+                                </td>
+                                <td>
+                                    <%= data[i].nama_role %>
+                                </td>
+                                <td>
+
+                                    <a href="/admin/user-role/remove/<%= data[i].id_role_user %>">Delete</a>
+                                </td>
+                            </tr>
+                            <% } } %>
                     </tbody>
                 </table>
             </div>
@@ -41,7 +60,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="user-role/add" method="post">
+                        <form action="/admin/user-role/add" method="post">
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Role</label>
@@ -58,15 +77,10 @@
         </div>
     </div>
 </div>
+
 <script>
     $(document).ready(function () {
-        $('#example').DataTable({
-            data: rows,
-            columns: [
-                { data: "id_role_user" },
-                { data: "nama_role" }
-            ]
-        });
+        $('#example').DataTable();
     });
-
+    console.log("hallo");
 </script>

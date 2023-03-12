@@ -6,7 +6,7 @@ var app = express();
 //         layout: 'layouts/layout',
 //         title: "Greentech Maliki",
 //         page: "userRole",
-//         data: rows
+
 //     });
 // });
 
@@ -20,7 +20,7 @@ app.get("/", function (req, res, next) {
                     layout: 'layouts/layout',
                     title: "Greentech Maliki",
                     page: "userRole",
-                    data: JSON.stringify(rows)
+                    data: rows
                 });
                 console.log(rows);
             }
@@ -30,24 +30,29 @@ app.get("/", function (req, res, next) {
 app.post('/add', function (req, res) {
 
     var role = req.sanitize("role").escape().trim();
+    console.log(role)
     req.getConnection(function (error, conn) {
-        conn.query("insert into role_user values(null,'" + role + "')", function (err) {
+        conn.query("insert into role_user values(null,'" + role + "')", function (err, rows) {
             if (err) {
-                res.render("admin/userRole", {
-                    layout: 'layouts/layout',
-                    title: "Greentech Maliki",
-                    page: "userRole",
-                    message: 'Error'
-                });
+                res.end()
             } else {
-                res.render("admin/userRole", {
-                    layout: 'layouts/layout',
-                    title: "Greentech Maliki",
-                    page: "userRole",
-                    data: JSON.stringify(rows),
-                    message: "success"
-                });
-                console.log(rows);
+                res.redirect("/admin/user-role")
+            }
+        });
+    });
+})
+
+// DELETE Record
+app.get('/remove/(:id)', function (req, res, next) {
+    var user = { id: req.params.id }
+    req.getConnection(function (error, conn) {
+        conn.query('DELETE FROM role_user WHERE id_role_user = ' + req.params.id, function (err) {
+            if (err) {
+                req.flash('error', err)
+                res.redirect('/admin/user-role')
+            } else {
+                req.flash('success', 'Data removed :' + req.params.id)
+                res.redirect('/admin/user-role')
             }
         });
     });

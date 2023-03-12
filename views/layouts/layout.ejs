@@ -33,11 +33,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="/assets/plugins/summernote/summernote-bs4.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/assets/css/custom.css">
-    <!-- BS5 -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> -->
     <!-- Data table -->
-    <!-- <link rel="stylesheet" href="cdn.datatables.net/1.13.3/css/jquery.dataTables.min.css"> -->
+    <link href="/assets/DataTables/datatables.min.css" rel="stylesheet" />
+
+    <!-- jQuery -->
+    <script src="/assets/plugins/jquery/jquery.min.js"></script>
+    <!-- Data table -->
+    <script src="/assets/DataTables/datatables.min.js"></script>
+
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -52,13 +56,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <%- include('footer') %>
 
     </div>
+
     <!-- ./wrapper -->
 
     <!-- REQUIRED SCRIPTS -->
-    <!-- Data table -->
+
     <!-- <script src="cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script> -->
-    <!-- jQuery -->
-    <script src="/assets/plugins/jquery/jquery.min.js"></script>
+
     <!-- jQuery UI 1.11.4 -->
     <script src="/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -90,6 +94,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="/assets/dist/js/pages/dashboard.js"></script>
+
+
 </body>
 
 </html>
