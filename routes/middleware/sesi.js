@@ -1,16 +1,20 @@
-exports.userAuth = (req, res, next) => {
-  const userRole = req.session.user.id_role_user;
-  if (userRole == 1) {
-    if (err) {
-      return res.status(401).json({ message: "Not authorized" });
-    } else {
-      if (decodedToken.role !== "Basic") {
-        return res.status(401).json({ message: "Not authorized" });
-      } else {
-        next();
-      }
+var express = require("express");
+var app = express();
+
+const passport = require("passport");
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use("/", function (req, res, next) {
+  console.log(req.session.user);
+  if (typeof req.session.user === "undefined") {
+    res.end("Belum Login");
+  }else{
+    if (req.session.user.id_role_user == ) {
+      
     }
-  } else {
-    return res.status(401).json({ message: "Not authorized, token not available" });
   }
-};
+  next();
+});
+
+module.exports = app;

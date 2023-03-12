@@ -71,6 +71,8 @@ app.use(
 );
 app.use(flash());
 
+app.use();
+
 app.use("/auth", authRoutes);
 // User
 app.use("/", home);
