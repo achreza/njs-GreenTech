@@ -41,7 +41,7 @@ app.post("/post_submission", function (req, res) {
       judul: req.sanitize("judul").escape().trim(),
       abstrak: req.sanitize("abstrak").escape().trim(),
       filename: req.file.filename,
-      id_status_abs: "In Review",
+      id_status_abs: 1,
       id_user: req.session.user.id_user,
     };
 
@@ -57,7 +57,7 @@ app.post("/post_submission", function (req, res) {
           abs_submission.abstrak +
           "', '" +
           abs_submission.filename +
-          "', NOW(), 'In Review', '" +
+          "', NOW(), 1, '" +
           abs_submission.id_user +
           "');",
         function (err, result) {
