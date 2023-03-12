@@ -21,7 +21,7 @@
             <div class="well">
               <form action="/auth/register" method="post" name="register_form">
                 <label for="email">Email : </label>
-                <input name="email" type="email" value="<%= user.emails[0].value %>" />
+                <input name="email" type="email" value="<%= user.emails[0].value %>" readonly />
                 <br />
                 <label for="fullname">Full Name : </label>
                 <input name="fullname" id="fullname" type="text" />

@@ -11,7 +11,29 @@ app.use(passport.session());
 app.get("/", function (req, res, next) {
   res.render("pages/auth", { layout: "layouts/layout", title: "GreenTech", page: "auth" });
 });
-app.get("/success", (req, res) => res.render("pages/success", { layout: "layouts/layout", title: "GreenTech", page: "success", user: userProfile }));
+app.get("/success", (req, res) => {
+  var emailUser = req.email;
+  req.getConnection(function (error, conn) {
+    conn.query("SELECT * FROM m_user where email = '" + userProfile.emails[0].value + "'", function (err, rows, fields) {
+      if (rows.length == 0) {
+        res.render("pages/success", { layout: "layouts/layout", title: "GreenTech", page: "success", user: userProfile });
+      } else {
+        if (rows[0].id_role_user == 1) {
+          res.redirect("/admin/dashboard");
+        }
+        if (rows[0].id_role_user == 2) {
+          res.redirect("/dashboard");
+        }
+        if (rows[0].id_role_user == 3) {
+          res.redirect("/dashboard");
+        }
+        if (rows[0].id_role_user == 4) {
+          res.redirect("/reviewer/dashboard");
+        }
+      }
+    });
+  });
+});
 app.get("/error", (req, res) => res.send("error logging in"));
 app.get("/errorSQL", (req, res) => res.send("error in SQL Query"));
 app.get("/google", passport.authenticate("google", { scope: ["profile", "email"] }));
