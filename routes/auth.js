@@ -13,11 +13,19 @@ app.get("/", function (req, res, next) {
 });
 app.get("/success", (req, res) => {
   var emailUser = req.email;
+  req.session.user = {
+    email: userProfile.emails[0].value,
+  };
   req.getConnection(function (error, conn) {
     conn.query("SELECT * FROM m_user where email = '" + userProfile.emails[0].value + "'", function (err, rows, fields) {
       if (rows.length == 0) {
         res.render("pages/success", { layout: "layouts/layout", title: "GreenTech", page: "success", user: userProfile });
       } else {
+        req.session.user = {
+          email: rows[0].email,
+          id_role_user: rows[0].id_role_user,
+          id_user: rows[0].id_user,
+        };
         if (rows[0].id_role_user == 1) {
           res.redirect("/admin/dashboard");
         }
