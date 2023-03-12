@@ -25,6 +25,8 @@ app.get("/success", (req, res) => {
           email: rows[0].email,
           id_role_user: rows[0].id_role_user,
           id_user: rows[0].id_user,
+          nama: rows[0].nama,
+          institusi: rows[0].institusi,
         };
         if (rows[0].id_role_user == 1) {
           res.redirect("/admin/dashboard");

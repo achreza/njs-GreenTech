@@ -1,5 +1,9 @@
 var express = require("express");
 var app = express();
+const passport = require("passport");
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 var multer = require("multer");
 
@@ -38,7 +42,7 @@ app.post("/post_submission", function (req, res) {
       abstrak: req.sanitize("abstrak").escape().trim(),
       filename: req.file.filename,
       id_status_abs: "In Review",
-      id_user: 1,
+      id_user: req.session.user.id_user,
     };
 
     console.log(abs_submission);
