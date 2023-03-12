@@ -8,12 +8,10 @@ var userProfile;
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.set("view engine", "ejs");
-
 app.get("/", function (req, res, next) {
-  res.render("pages/auth");
+  res.render("pages/auth", { layout: "layouts/layout", title: "GreenTech", page: "auth" });
 });
-app.get("/success", (req, res) => res.send(userProfile));
+app.get("/success", (req, res) => res.render("pages/success", { layout: "layouts/layout", title: "GreenTech", page: "success", user: userProfile }));
 app.get("/error", (req, res) => res.send("error logging in"));
 app.get("/google", passport.authenticate("google", { scope: ["profile", "email"] }));
 

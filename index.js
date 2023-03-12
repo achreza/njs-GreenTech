@@ -22,9 +22,24 @@ const topic = require("./routes/admin/topic");
 const revDashboard = require("./routes/reviewer/dashboard");
 const revAbstractList = require("./routes/reviewer/abstractList");
 const revDetail = require("./routes/reviewer/detail");
+const myConnection = require("express-myconnection");
+const flash = require("express-flash");
+const cookieParser = require("cookie-parser");
+var mysql = require("mysql");
 
 app.set("view engine", "ejs");
 app.use(expressLayout);
+
+var config = require("./config/config");
+var dbOptions = {
+  host: config.database.host,
+  user: config.database.user,
+  password: config.database.password,
+  port: config.database.port,
+  database: config.database.db,
+};
+
+app.use(myConnection(mysql, dbOptions, "pool"));
 
 app.use(
   session({
@@ -33,6 +48,7 @@ app.use(
     secret: "SECRET",
   })
 );
+app.use(flash());
 
 app.use("/auth", authRoutes);
 // User
@@ -51,10 +67,9 @@ app.use("/admin/user-list", userList);
 app.use("/admin/user-role", userRole);
 app.use("/admin/topic", topic);
 // reviewer
-app.use("/reviewer/dashboard",revDashboard);
-app.use("/reviewer/abstract-list",revAbstractList);
-app.use("/reviewer/detail",revDetail);
-
+app.use("/reviewer/dashboard", revDashboard);
+app.use("/reviewer/abstract-list", revAbstractList);
+app.use("/reviewer/detail", revDetail);
 
 // const port = process.env.PORT || 3000;
 // app.listen(port, () => console.log("App listening on port " + port));
@@ -64,4 +79,3 @@ app.use(express.static(__dirname + "/public"));
 app.listen(3000, function () {
   console.log("Server running at port 3000: http://127.0.0.1:3000");
 });
-
