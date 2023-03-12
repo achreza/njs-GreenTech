@@ -18,30 +18,14 @@
             <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Add
                 Role</button>
             <div class="col-lg-12">
-                <table class="table">
+                <table id="example">
                     <thead>
                         <tr>
-                            <th scope="col">No</th>
-                            <th scope="col">User Role</th>
+                            <th>ID Topic</th>
+                            <th>Nama Topic</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                        </tr>
-
                     </tbody>
                 </table>
             </div>
@@ -57,20 +41,32 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="">
-        
+                        <form action="user-role/add" method="post">
+
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Role</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                    name="title">
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" name="role">
                             </div>
+
                             <button type="submit" class="btn btn-primary">Save</button>
                         </form>
                     </div>
-        
+
                 </div>
             </div>
         </div>
-
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable({
+            data: rows,
+            columns: [
+                { data: "id_role_user" },
+                { data: "nama_role" }
+            ]
+        });
+    });
+
+</script>
