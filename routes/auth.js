@@ -2,9 +2,8 @@ var express = require("express");
 var app = express();
 const session = require("express-session");
 
-const passport = require("passport");
 var userProfile;
-
+const passport = require("passport");
 app.use(passport.initialize());
 app.use(passport.session());
 
