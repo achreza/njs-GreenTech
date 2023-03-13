@@ -63,7 +63,14 @@
         <small id="emailHelp" class="form-text text-muted">Silahkan isi komentar</small>
       </div>
 
-      <button type="submit" class="btn btn-primary">Make Decision</button>
+      <% if ( data.id_status_abs == 1) { %>
+        <button type="submit" class="btn btn-primary" >Make Decision</button>
+      
+        
+      <% } else { %>
+        <small id="decisionHelp" class="form-text text-muted">Submission ini Sudah tidak dalam status "IN REVIEW"</small>
+        <% } %>
+     
     </form>
   </div>
 </div>
