@@ -42,7 +42,15 @@
       <h5>Upload Time : <span><%= data.submitted_at %></span></h5>
       <div class="form-group">
         <label for="exampleInputEmail1">Status</label>
-        <select class="form-control" name="status" >
+        <select class="form-control" name="status" 
+        <% if ( data.id_status_abs != 1) { %>
+           disabled
+          
+            
+          <% } %>
+           
+      
+        >
           <option value="1" <% if (data.id_status_abs == 1) { %>
             selected
            <% } %> >In Review</option>
@@ -55,12 +63,12 @@
           opt
         </select>
       </div>
-      <h5>Decision Time : <span><%= data.decision_at || 'Not Make Decision yet' %></span></h5>
+      <h5>Decision Time : <span><%= data.decission_at || 'Not Make Decision yet' %></span></h5>
 
       <div class="form-group">
         <label for="exampleInputEmail1">Comment</label>
         <textarea class="form-control" id="w3review" name="comment" rows="6" cols="50" style="resize: none"><%= data.comment  %></textarea>
-        <small id="emailHelp" class="form-text text-muted">Silahkan isi komentar</small>
+        
       </div>
 
       <% if ( data.id_status_abs == 1) { %>
